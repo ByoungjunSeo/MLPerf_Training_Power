@@ -1,0 +1,158 @@
+INFO -  Checking System Description Files
+INFO -   System description checker passed for TTA_2xH100NVL_NVLink
+INFO - ------------------------------
+INFO -  Running compliance checks in dir submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b
+INFO -  System TTA_2xH100NVL_NVLink
+INFO -  Benchmark llama31_8b
+INFO - ------------------------------
+INFO - ------------------------------
+INFO - Run 1/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_0.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 2/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_1.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 3/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_2.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 4/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_3.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 5/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_4.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 6/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_5.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 7/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_6.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 8/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_7.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 9/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_8.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 10/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_9.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO -  Running Seed Checker
+INFO - ------------------------------
+INFO -  Running RCP Checker, pass: pruned_rcps
+INFO - ------------------------------
+INFO -  RCP Record: {'Benchmark': 'llama31_8b', 'BS': 32, 'Hyperparams': {'opt_base_learning_rate': 0.0008, 'opt_learning_rate_warmup_samples': 4096, 'gradient_accumulation_steps': 1}, 'Epochs to converge': [172032, 172032, 172032, 172032, 172032, 172032, 172032, 172032, 172032, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 196608], 'RCP Mean': np.float64(178858.66666666666), 'RCP Stdev': np.float64(7165.0736883859045), 'Max Speedup': np.float64(1.0299965952657717), 'Min Epochs': np.float64(173649.76494948068)}
+INFO -  Submission mean epochs: 216576.0000
+INFO - RCP Test Passed: RCP found
+INFO - ------------------------------
+INFO - ------------------------------
+INFO - PACKAGE CHECKER FOUND NO ERRORS, SUCCESS !
+INFO - ------------------------------
+INFO -  Checking System Description Files
+INFO -   System description checker passed for TTA_2xH100NVL_NVLink
+INFO - ------------------------------
+INFO -  Running compliance checks in dir submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b
+INFO -  System TTA_2xH100NVL_NVLink
+INFO -  Benchmark llama31_8b
+INFO - ------------------------------
+INFO - ------------------------------
+INFO - Run 1/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_0.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 2/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_1.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 3/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_2.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 4/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_3.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 5/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_4.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 6/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_5.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 7/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_6.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 8/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_7.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 9/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_8.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO - Run 10/10
+INFO - Running compliance on file: submission_v5.1/TTA/results/TTA_2xH100NVL_NVLink/llama31_8b/result_9.txt
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - ------------------------------
+INFO -  Running Seed Checker
+INFO - ------------------------------
+INFO -  Running RCP Checker, pass: pruned_rcps
+INFO - ------------------------------
+INFO -  RCP Record: {'Benchmark': 'llama31_8b', 'BS': 32, 'Hyperparams': {'opt_base_learning_rate': 0.0008, 'opt_learning_rate_warmup_samples': 4096, 'gradient_accumulation_steps': 1}, 'Epochs to converge': [172032, 172032, 172032, 172032, 172032, 172032, 172032, 172032, 172032, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 196608], 'RCP Mean': np.float64(178858.66666666666), 'RCP Stdev': np.float64(7165.0736883859045), 'Max Speedup': np.float64(1.0299965952657717), 'Min Epochs': np.float64(173649.76494948068)}
+INFO -  Submission mean epochs: 216576.0000
+INFO - RCP Test Passed: RCP found
+INFO - ------------------------------
+INFO - ------------------------------
+INFO - PACKAGE CHECKER FOUND NO ERRORS, SUCCESS !
+INFO - ------------------------------

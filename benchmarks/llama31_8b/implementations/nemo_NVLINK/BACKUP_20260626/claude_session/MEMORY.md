@@ -1,0 +1,1 @@
+- [Optimization log convention](memory/feedback_optimization_log.md) — Log every MLPerf experiment to OPTIMIZATION_LOG.md+.csv with hypothesis field

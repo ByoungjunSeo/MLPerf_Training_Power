@@ -1,0 +1,12 @@
+# Claude Code
+.claude/
+CLAUDE.md
+CLAUDE.local.md
+
+# Job logs (raw stdout, 내부 경로 포함)
+slurm-*.out
+power_logs/
+
+# 대용량 데이터 (컨테이너 마운트용)
+nemo_tokenizer/
+*.sqsh

@@ -1,0 +1,5 @@
+INFO - Running compliance on file: /results/260611132410934662046_1.log
+INFO -  Compliance checks: training_5.1.0/common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_common.yaml
+INFO -  Compliance checks: training_5.1.0/closed_llama31_8b.yaml
+INFO - SUCCESS

@@ -1,0 +1,2946 @@
+[NeMo I 2026-02-04 06:44:37 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 06:44:37 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: true
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 21106
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: selective
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: true
+      transformer_engine: true
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: true
+      cross_entropy_fusion_impl: te
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 768000000
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204064052474547941
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 06:44:37 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 06:44:37 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 06:44:38 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 06:44:51 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 06:44:51 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 06:44:51 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 06:44:51 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-04 06:57:56 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 06:57:56 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: true
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 10628
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: selective
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: true
+      transformer_engine: true
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: true
+      cross_entropy_fusion_impl: te
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 768000000
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204065419856025654
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 06:57:56 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 06:57:56 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 06:57:57 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 06:58:10 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 06:58:10 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 06:58:10 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 06:58:10 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: true
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 14060
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: full
+      activations_checkpoint_method: uniform
+      activations_checkpoint_num_layers: 1
+      sequence_parallel: true
+      transformer_engine: true
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: true
+      cross_entropy_fusion_impl: te
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 768000000
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204080123081379763
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 08:05:06 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 08:05:19 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 08:05:19 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 08:05:19 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 08:05:19 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: true
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 17990
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: selective
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: true
+      transformer_engine: true
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: true
+      cross_entropy_fusion_impl: te
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 134217728
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204082244836739143
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 08:26:44 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 08:26:58 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 08:26:58 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 08:26:58 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 08:26:58 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-04 08:49:34 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 08:49:34 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: true
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 30852
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: selective
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: true
+      transformer_engine: true
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: true
+      cross_entropy_fusion_impl: te
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 134217728
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204084539849725240
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 08:49:34 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 08:49:34 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 08:49:35 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 08:49:48 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 08:49:48 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 08:49:48 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 08:49:48 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-04 09:03:40 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 09:03:40 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: true
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 21012
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: selective
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: true
+      transformer_engine: true
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: true
+      cross_entropy_fusion_impl: te
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: false
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 134217728
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204085945894510513
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 09:03:40 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 09:03:40 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 09:03:41 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 09:03:53 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 09:03:53 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 09:03:54 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 09:03:54 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: true
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: false
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 11004
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: selective
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: true
+      transformer_engine: true
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: false
+      cross_entropy_fusion_impl: te
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: false
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 134217728
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204100656052113081
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:10:46 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 10:10:59 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 10:10:59 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 10:10:59 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 10:10:59 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: true
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 27576
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: null
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: true
+      transformer_engine: false
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: false
+      cross_entropy_fusion_impl: native
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 768000000
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204101312083916679
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:17:11 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 10:17:24 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 10:17:24 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 10:17:24 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 10:17:24 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: true
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 18093
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: null
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: true
+      transformer_engine: false
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: false
+      cross_entropy_fusion_impl: te
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 768000000
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204101913472079174
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:23:15 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 10:23:28 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 10:23:28 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 10:23:28 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 10:23:28 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: true
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 23922
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: null
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: false
+      transformer_engine: false
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: false
+      cross_entropy_fusion_impl: native
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 768000000
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204102509942712811
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:28:52 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 10:29:05 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 10:29:05 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 10:29:05 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 10:29:05 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-04 10:56:57 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 10:56:57 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: false
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 8493
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: null
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: false
+      transformer_engine: false
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: false
+      cross_entropy_fusion_impl: native
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 768000000
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204105259004004485
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 10:56:57 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 10:56:57 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 10:56:58 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 10:57:10 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 10:57:10 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 10:57:10 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 10:57:10 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-04 11:36:56 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-04 11:36:56 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: false
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 22621
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: null
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: false
+      transformer_engine: true
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: true
+      cross_entropy_fusion_impl: te
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 768000000
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 500
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260204113241046943931
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-04 11:36:56 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-04 11:36:56 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-04 11:36:57 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-04 11:37:01 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-04 11:37:01 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-04 11:37:01 nemo_logging:393] Copying Trainer's 'max_steps' (500) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-04 11:37:01 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-05 01:02:26 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-05 01:02:26 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: false
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 5967
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: null
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: false
+      transformer_engine: true
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: true
+      cross_entropy_fusion_impl: te
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 768000000
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260205005816743790829
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-05 01:02:26 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-05 01:02:26 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-05 01:02:27 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-05 01:02:40 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-05 01:02:40 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-05 01:02:40 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-05 01:02:40 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-05 18:11:43 nemo_logging:393] Running garbage collection at train global_step: 10000
+[NeMo I 2026-02-06 11:22:23 nemo_logging:393] Running garbage collection at train global_step: 20000
+[NeMo I 2026-02-07 04:32:25 nemo_logging:393] Running garbage collection at train global_step: 30000
+[NeMo I 2026-02-07 05:03:58 nemo_logging:393] Running garbage collection at validation step: 10000
+[NeMo I 2026-02-08 03:20:48 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-08 03:20:48 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: false
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 10126
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: null
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: false
+      transformer_engine: true
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: true
+      cross_entropy_fusion_impl: native
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 768000000
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 1200000
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260208031627049680775
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-08 03:20:48 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-08 03:20:48 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-08 03:20:49 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-08 03:21:01 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-08 03:21:01 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-08 03:21:01 nemo_logging:393] Copying Trainer's 'max_steps' (1200000) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-08 03:21:01 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
+[NeMo I 2026-02-08 20:43:20 nemo_logging:393] Running garbage collection at train global_step: 10000
+[NeMo I 2026-02-09 14:07:37 nemo_logging:393] Running garbage collection at train global_step: 20000
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] 
+    
+    **************** Experiment configuration ****************
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] 
+    model:
+      data:
+        data_prefix:
+          train:
+          - 0.5
+          - /preproc_data/c4_en_6_c4_spm_text_document
+          - 0.5
+          - /preproc_data/c4_en_7_c4_spm_text_document
+          validation:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+          test:
+          - /preproc_data/c4_en_validation_subset_c4_spm_text_document
+        index_mapping_dir: /npy_index
+        splits_string: null
+        validation_drop_last: false
+        pad_samples_to_global_batch_size: true
+        shuffle_documents: false
+        legacy_dataset: true
+        delay_data_init: true
+        delay_data_mmap: true
+        no_seqlen_plus_one_input_tokens: true
+        exchange_indices_distributed: true
+        mock_dataset: false
+        mock_tokenizer_vocab_size: 32000
+      mcore_gpt: true
+      name: megatron_gpt_full_te_layer_autocast
+      micro_batch_size: 1
+      tensor_model_parallel_size: 2
+      pipeline_model_parallel_size: 1
+      virtual_pipeline_model_parallel_size: null
+      context_parallel_size: 1
+      expert_model_parallel_size: 1
+      global_batch_size: 8
+      use_tp_pp_dp_mapping: true
+      base_config: 8b
+      overwritten_attributes:
+        num_layers: 32
+        enable_cuda_graph: 0
+        cuda_graph_scope: full
+      encoder_seq_length: 8192
+      overlap_p2p_comm: true
+      batch_p2p_comm: false
+      account_for_embedding_in_pipeline_split: false
+      account_for_loss_in_pipeline_split: false
+      external_cuda_graph: false
+      defer_embedding_wgrad_compute: false
+      wgrad_deferral_limit: 50
+      tokenizer:
+        model: /workspace/llm/nemo_tokenizer
+      gradient_accumulation_fusion: true
+      fused_single_qkv_rope: true
+      cross_entropy_loss_fusion: true
+      deterministic_mode: false
+      seed: 17099
+      resume_from_checkpoint: null
+      dist_ckpt_format: torch_dist
+      dist_ckpt_parallel_load: true
+      sync_batch_comm: false
+      activations_checkpoint_granularity: null
+      activations_checkpoint_method: null
+      activations_checkpoint_num_layers: null
+      sequence_parallel: false
+      transformer_engine: false
+      fp8: false
+      fp8_hybrid: false
+      fp8_recipe: tensorwise
+      fp8_amax_history_len: 1
+      fp8_amax_compute_algo: most_recent
+      fp4: false
+      fp4_recipe: nvfp4
+      reduce_amax: true
+      tp_only_amax_red: true
+      first_last_layers_bf16: false
+      num_layers_at_start_in_bf16: 0
+      num_layers_at_end_in_bf16: 0
+      fp8_dot_product_attention: false
+      use_te_rng_tracker: true
+      use_transformer_engine_op_fuser: false
+      cross_entropy_fusion_impl: native
+      ub_tp_comm_overlap: false
+      tp_comm_overlap_ag: false
+      tp_comm_overlap_rs: false
+      nccl_communicator_config_path: /workspace/llm/conf/nccl/custom_communicator_cta.yaml
+      sharp: false
+      optim:
+        overlap_grad_reduce: true
+        overlap_param_gather: false
+        align_param_gather: false
+        use_distributed_optimizer: true
+        bucket_size: 768000000
+        fp8_param_gather: false
+        overlap_param_gather_with_optim_step: false
+        lr: 0.00015
+        sched:
+          min_lr: 1.4999999999999999e-05
+          warmup_steps: 128
+          max_steps_for_lr_sched: 172800000.0
+        lock_timeout: null
+      gc_interval_train: 10000
+      gc_interval_valid: 10000
+      nsys_profile:
+        enabled: false
+        start_step: 10
+        end_step: 10
+        ranks:
+        - 0
+        gen_shape: false
+        nvtx_ranges: false
+      custom:
+        log_metrics: NEMO
+        init_global_step: 0
+        target_log_ppl: 3.3
+        use_distributed_checkpointing: 1
+        run_warmup_on_synth_data: 1
+        reset_fp8_stats_after_warmup: 1
+        pre_validate: 0
+        override_zero_consumed_samples: 1
+        force_success_status: 0
+        warmup_train_steps: 2
+        warmup_validation_steps: 0
+        extend_run_evals: 0
+        disable_nemo_logs: true
+    proxy_gbs: 8
+    is_proxy_run: false
+    skip_evals: 12
+    default_val_check_interval: 1536
+    trainer:
+      devices: 2
+      num_nodes: 1
+      precision: bf16
+      max_steps: 500
+      max_epochs: 1
+      log_every_n_steps: 32
+      val_check_interval: 384
+      limit_val_batches: 128
+      limit_test_batches: 1
+      limit_train_batches: null
+      enable_progress_bar: false
+      num_sanity_val_steps: 0
+    exp_manager:
+      explicit_log_dir: /results/260213000927055948937
+      resume_if_exists: 0
+      create_checkpoint_callback: 0
+      checkpoint_callback_params:
+        save_top_k: 1
+        mode: max
+        every_n_epochs: 0
+        save_last: true
+      log_step_timing: true
+      create_tensorboard_logger: false
+      log_global_rank_0_only: true
+    misc:
+      print_config: false
+      memory_profiler:
+        enable: false
+        file_prefix: memdump
+        max_entries: 1000000
+        rank_0_only: true
+        start_location: init
+        end_location: train_start
+        force_oom_before_stop: false
+        possible_oom: false
+    
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] 
+    TP: 2; PP: 1; VP: None; CP: 1
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] ======== Benchmarked setups ========
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] ======== Benchmarked fit ========
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Experiments will be logged at /workspace/llm/nemo_experiments/default
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Rank 1 has data parallel group : [1]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Rank 1 has combined group of data parallel and context parallel : [1]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] All data parallel group ranks with context parallel combined: [[0], [1]]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Ranks 1 has data parallel rank: 0
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Rank 1 has context parallel group: [1]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] All context parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Ranks 1 has context parallel rank: 0
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Rank 1 has model parallel group: [0, 1]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] All model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Rank 1 has tensor model parallel group: [0, 1]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] All tensor model parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Rank 1 has tensor model parallel rank: 1
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] All expert tensor parallel group ranks: [[0, 1]]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Rank 1 has expert tensor parallel rank: 1
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Rank 1 has pipeline model parallel group: [1]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Rank 1 has embedding group: [1]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] All pipeline model parallel group ranks: [[0], [1]]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Rank 1 has pipeline model parallel rank 0
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] All embedding group ranks: [[0], [1]]
+[NeMo I 2026-02-13 00:14:07 nemo_logging:393] Rank 1 has embedding rank: 0
+[NeMo I 2026-02-13 00:14:10 nemo_logging:393] Padded vocab_size: 128256, original vocab_size: 128256, dummy tokens: 0.
+[NeMo I 2026-02-13 00:14:11 nemo_logging:393] Apply rope scaling with factor=8.0, low_freq_factor=1.0, high_freq_factor=4.0, old_context_len=8192.
+[NeMo I 2026-02-13 00:14:11 nemo_logging:393] Copying Trainer's 'max_steps' (500) to LR scheduler's 'max_steps'.
+[NeMo I 2026-02-13 00:14:11 nemo_logging:393]  > number of parameters on (tensor, pipeline) model parallel rank (1 ,0): 4015263744
