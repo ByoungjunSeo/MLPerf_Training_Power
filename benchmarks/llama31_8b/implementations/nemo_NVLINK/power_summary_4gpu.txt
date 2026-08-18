@@ -1,0 +1,10 @@
+job 219: Power consumed: 160436155.34
+job 220: Power consumed: 160330331.08
+job 221: Power consumed: 151403519.56
+job 222: Power consumed: 151903250.82
+job 223: Power consumed: 151888582.12
+job 224: Power consumed: 169045240.28
+job 225: Power consumed: 177428407.5
+job 226: Power consumed: 186326785.9
+job 227: Power consumed: 159749377.24
+job 228: Power consumed: 150701379.98

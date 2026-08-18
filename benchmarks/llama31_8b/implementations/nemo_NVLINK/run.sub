@@ -347,10 +347,13 @@ fi
 if [ -f "$POWERCMDDIR/power_monitor.sh"  ]; then
     ( umask 0002; mkdir -p "${POWERLOGDIR}" )
     # Measure GPU power on up to 64 nodes.
+    # Whole script under a single sudo (per-iteration sudo caused 2-3s sampling gaps);
+    # pinned to socket 0 (NUMA 0 — no GPUs there); POWERLOGDIR/JOB_ID passed as args
+    # because sudoers env_reset would strip them from the environment.
     if [ ${SLURM_JOB_NUM_NODES} -gt 64 ]; then
-    	( srun --overlap --ntasks=64 bash $POWERCMDDIR/power_monitor.sh ) &
+    	( srun --overlap --ntasks=64 sudo -n numactl --cpunodebind=0 --membind=0 bash $POWERCMDDIR/power_monitor.sh "${POWERLOGDIR}" "${SLURM_JOB_ID}" ) &
     else
-	    ( srun --overlap --ntasks-per-node=1 bash $POWERCMDDIR/power_monitor.sh ) &
+	    ( srun --overlap --ntasks-per-node=1 sudo -n numactl --cpunodebind=0 --membind=0 bash $POWERCMDDIR/power_monitor.sh "${POWERLOGDIR}" "${SLURM_JOB_ID}" ) &
     fi
 fi
 

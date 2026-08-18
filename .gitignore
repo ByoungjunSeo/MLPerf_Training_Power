@@ -15,3 +15,7 @@ systems/
 *.run
 IPMIPower.txt
 **/output/power/
+# 전력 측정 원본 (오프박스 아카이브 + /backup 이중화로 보존)
+**/output/power_*/
+**/output/power/
+**/IPMIPower.txt

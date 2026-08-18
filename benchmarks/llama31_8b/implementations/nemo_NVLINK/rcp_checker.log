@@ -1,0 +1,12 @@
+INFO - ------------------------------
+INFO -  Running RCP Checker, pass: pruned_rcps
+INFO - ------------------------------
+INFO -  RCP Record: {'Benchmark': 'llama31_8b', 'BS': 32, 'Hyperparams': {'opt_base_learning_rate': 0.0008, 'opt_learning_rate_warmup_samples': 4096, 'gradient_accumulation_steps': 1}, 'Epochs to converge': [172032, 172032, 172032, 172032, 172032, 172032, 172032, 172032, 172032, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 196608], 'RCP Mean': np.float64(178858.66666666666), 'RCP Stdev': np.float64(7165.0736883859045), 'Max Speedup': np.float64(1.0299965952657717), 'Min Epochs': np.float64(173649.76494948068)}
+INFO -  Submission mean epochs: 221184.0000
+INFO - RCP found, RCP test PASSED
+INFO - ------------------------------
+INFO -  Running RCP Checker, pass: pruned_rcps
+INFO - ------------------------------
+INFO -  RCP Record: {'Benchmark': 'llama31_8b', 'BS': 32, 'Hyperparams': {'opt_base_learning_rate': 0.0008, 'opt_learning_rate_warmup_samples': 4096, 'gradient_accumulation_steps': 1}, 'Epochs to converge': [172032, 172032, 172032, 172032, 172032, 172032, 172032, 172032, 172032, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 184320, 196608], 'RCP Mean': np.float64(178858.66666666666), 'RCP Stdev': np.float64(7165.0736883859045), 'Max Speedup': np.float64(1.0299965952657717), 'Min Epochs': np.float64(173649.76494948068)}
+INFO -  Submission mean epochs: 221184.0000
+INFO - RCP found, RCP test PASSED
